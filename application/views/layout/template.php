@@ -22,8 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	body {
 		background-color: #fff;
-		margin: 10px;
-		font-family: Monaco, Courier New, Courier, monospace;
+		margin: 0px 50px;
+		font-family: Consolas;
 		color: #4F5155;
 	}
 
@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <li><a href="#"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a></li>
           <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</a></li>
           <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i> Clear Cache</a></li>
-          <li><a href="#"> <i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
+          <li><a href="<?=site_url('/auth/logout');?>"> <i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
         </ul>
       </li>
 
@@ -115,11 +115,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 
+	{breadcrumbs}
+
 	<!-- Content -->
 	{content}
 
 	<!-- Pagination -->
-	{pagin}
+	<h3  class="text-primary">{total}</h3> {pagin}
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>

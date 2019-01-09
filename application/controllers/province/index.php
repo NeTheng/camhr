@@ -37,6 +37,12 @@ $data_view['arrProvince'] = $this->mod_pro->fetchPaginProvince($page_number, $li
 $config['total_rows'] = $total;
 $this->pagination->initialize($config);
 
+$arrBreadcrumb = $this->uri->segment_array();
+$this->breadcrumb->add('Home', site_url('/'));
+$this->breadcrumb->add(strtoupper((String)$arrBreadcrumb[1]), site_url($arrBreadcrumb[1].'/'.$arrBreadcrumb[2]));
+
+$data['breadcrumbs'] = $this->breadcrumb->render();
+$data['total'] = $total;
 $data['pagin'] = $this->pagination->create_links();
 $data['content'] = $this->parser->parse('province/index', $data_view, TRUE);
 $this->template->_layout($data, $bool=false);

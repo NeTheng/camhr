@@ -10,4 +10,9 @@ class Province extends CI_Controller {
 	{
 		include(dirname(__FILE__)."/province/index.php");      
 	}
+
+	public function child()
+	{
+		include(dirname(__FILE__)."/province/child.php");      
+	}	
 }
