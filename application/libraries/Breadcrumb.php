@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Breadcrumb {
 
 	private $breadcrumbs = array();
-	private $tags = "";
+	private $tags = array();
 	
 	function __construct()
 	{
