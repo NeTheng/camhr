@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	body {
 		background-color: #fff;
-		margin: 0px 50px;
+		margin: 0px 0px;
 		font-family: Consolas;
 		color: #4F5155;
 	}
@@ -80,11 +80,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand navbar-left" href="#"><img style="max-width:80px;" src="/image/favicon.ico"></a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#"><i class="fa fa-fw fa-home"></i>Home</a></li>
@@ -111,11 +110,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </ul>
   </div>
 </nav>
-
+<div class="container">
 
 	<div id="body">
 
-	{breadcrumbs}
+	<!-- {breadcrumbs} -->
 
 	<!-- Content -->
 	{content}
@@ -126,6 +125,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
-
+</div>
 </body>
 </html>

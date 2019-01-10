@@ -2,7 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+
+
+  <div class="jumbotron">
+      <h1>Bootstrap Tutorial</h1>      
+      <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+    </div>      
+  </div>
+
+
   <h2>List Provinces</h2>
+
+  <hr>
 <!--   <p>
     
     <ul class="breadcrumb">
@@ -70,3 +81,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </tbody>
   </table>
 </div>
+
