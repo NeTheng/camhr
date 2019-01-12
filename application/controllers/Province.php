@@ -11,8 +11,8 @@ class Province extends CI_Controller {
 		include(dirname(__FILE__)."/province/index.php");      
 	}
 
-	public function child()
+	public function list_view()
 	{
-		include(dirname(__FILE__)."/province/child.php");      
-	}	
+		include(dirname(__FILE__)."/province/list_view.php"); 
+	}
 }

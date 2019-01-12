@@ -9,6 +9,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     font-weight: normal;
     color: #ffffff;
   }
+
+  .ui-progressbar {
+    position: relative;
+  }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+
 </style>
 
 <div id="accordion" class="accordion">
@@ -55,17 +67,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
       </div>
     </div>
-    
+
   </div>
-
-
    <hr>
   <div class="row content">
     <div class="widget">
     <button class="ui-button ui-widget ui-corner-all">Search</button>
-    <input class="ui-button ui-widget ui-corner-all" type="submit" value="Reset">
-    <a class="ui-button ui-widget ui-corner-all" href="#">Excel</a>
-    <a class="ui-button ui-widget ui-corner-all" href="#">PDF</a>
+    <button id="_export_excel" class="ui-button ui-widget ui-corner-all">Excel</button>
+
+    <!-- <input class="ui-button ui-widget ui-corner-all" type="submit" value="Submit"> -->
+    <!-- <a class="ui-button ui-widget ui-corner-all" href="#">Anchor</a> -->
 
     </div>
 
@@ -76,12 +87,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 
+<div style="display: none;" class="text-center" id="loading-data">
+    <div><img src="<?=base_url('image/giphy.gif');?>" ></div>
+</div>
+
   <h2>List Provinces</h2>
 
   <hr>
 
   <div class="table-responsive-sm">
-  <table class="table table-bordered table-striped table-hover">
+  <table id="table-data" class="table table-bordered table-striped table-hover">
     <thead>
       <tr>
         <th>ID <i class="fa fa-fw fa-sort"></i> </th>
@@ -137,9 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div>
 
 
-
 <!-- Script -->
-
 <script>
   $( function() {
     $( "#accordion" ).accordion({
@@ -196,7 +209,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
   } );
   </script>
-
-
 <!-- End Script -->
 
+<!-- AJAX -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  $("#_export_excel").click(function(){
+    $.ajax({
+    url: "<?=site_url('province/list_view');?>", 
+    success: function(result){
+      
+    },
+    dataType: "json",
+    data:{},
+    async: true,
+    global:true,
+    type:"get",
+    // timeout:60,
+    cache:false,
+    beforeSend(xhr){
+      $("#loading-data").show();
+    },
+    complete(xhr,status){
+      $("#table-data > tbody").html("");
+      $("#loading-data").hide();
+
+    },
+    error: function(xhr){
+      alert("An error occured: " + xhr.status + " " + xhr.statusText);
+    }
+    });
+  });
+});
+</script>
+<!--END AJAX -->
+
+
+<!-- processbar -->
+<script>
+  $( function() {
+ 
+  } );
+  </script>
