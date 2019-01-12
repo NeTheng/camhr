@@ -23,6 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </style>
 
+
+  <h2>List Provinces</h2>
+
+  <hr>
+
 <div id="accordion" class="accordion">
   <h3>Search</h3>
 <div class="container-fluid text-left">
@@ -91,11 +96,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div><img src="<?=base_url('image/giphy.gif');?>" ></div>
 </div>
 
-  <h2>List Provinces</h2>
+<br>
 
-  <hr>
 
-  <div class="table-responsive-sm">
+
+  <div id="tab_manage" class="table-responsive-sm">
   <table id="table-data" class="table table-bordered table-striped table-hover">
     <thead>
       <tr>
@@ -233,7 +238,7 @@ $(document).ready(function(){
       $("#loading-data").show();
     },
     complete(xhr,status){
-      $("#table-data > tbody").html("");
+      $("#table-data").html("");
       $("#loading-data").hide();
 
     },

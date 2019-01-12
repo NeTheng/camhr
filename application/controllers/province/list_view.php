@@ -10,6 +10,7 @@ $params = array();
 $sess = $this->session->userdata('userStorage');
 // print_r($sess);
 
+
 $config['base_url'] = site_url('province/index');
 $config['use_page_numbers'] = TRUE;
 $config['full_tag_open'] = '<div><ul class="pagination pagination-small pagination-centered">';
