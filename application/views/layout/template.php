@@ -8,11 +8,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>Welcome to CodeIgniter</title>
 
+<!-- Server Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--End Server Bootstrap -->
 
+
+<!-- Local -->
+  <link rel="stylesheet" href="<?=base_url('/jquery-ui-1.12.1/jquery-ui.css');?>">
+  <script src="<?=base_url('/jquery-ui-1.12.1/external/jquery/jquery.js');?>"></script>
+  <script src="<?=base_url('/jquery-ui-1.12.1/jquery-ui.js');?>"></script>
+<!-- End Local -->
 
 
 	<style type="text/css">
@@ -79,41 +87,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<div id="container">
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand navbar-left" href="#"><img style="max-width:80px;" src="/image/favicon.ico"></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#"><img style="max-width:80px;" src="/image/favicon.ico"></a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#"><i class="fa fa-fw fa-home"></i>Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-chevron-down" aria-hidden="true"></i>
-</i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a></li>
-          <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</a></li>
-          <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i> Clear Cache</a></li>
-          <li><a href="<?=site_url('/auth/logout');?>"> <i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
-        </ul>
-      </li>
 
-    </ul>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul id="menu" class="nav navbar-nav">
+        <li class="active"><a href="#"><i class="fa fa-fw fa-home"></i>Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+	  <ul class="nav navbar-nav navbar-right">
+	      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-chevron-down" aria-hidden="true"></i></i></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="#"><i class="fa fa-user-md" aria-hidden="true"></i> Profile</a></li>
+	          <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i> Change Password</a></li>
+	          <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i> Clear Cache</a></li>
+	          <li><a href="<?=site_url('/auth/logout');?>"> <i class="fa fa-power-off" aria-hidden="true"></i> Logout</a></li>
+	        </ul>
+	      </li>
+	   </ul>
+
+
+    </div>
+
   </div>
 </nav>
+
+
 <div class="container">
-
 	<div id="body">
-
 	<!-- {breadcrumbs} -->
 
 	<!-- Content -->
@@ -125,6 +136,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
-</div>
+
 </body>
 </html>

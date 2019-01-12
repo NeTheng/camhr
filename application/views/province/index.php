@@ -2,29 +2,83 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
+<style type="text/css">
+  .ui-state-active{
+        border: 1px solid #565656;
+    background: #222222;
+    font-weight: normal;
+    color: #ffffff;
+  }
+</style>
 
+<div id="accordion" class="accordion">
+  <h3>Search</h3>
+<div class="container-fluid text-left">
 
-  <div class="jumbotron">
-      <h1>Bootstrap Tutorial</h1>      
-      <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
-    </div>      
+  <div class="row content">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <fieldset>
+        <label for="speed">Select a speed</label>
+        <select name="speed" id="speed">
+          <option>Slower</option>
+          <option>Slow</option>
+          <option selected="selected">Medium</option>
+          <option>Fast</option>
+          <option>Faster</option>
+        </select>
+      </fieldset>
+    </div>
+
   </div>
+
+
+  <div class="row content">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <div class="ui-widget">
+          <label for="tags">Tags: </label>
+          <input class="form-control" id="tags">
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+   <hr>
+  <div class="row content">
+    <div class="widget">
+    <button class="ui-button ui-widget ui-corner-all">Search</button>
+    <input class="ui-button ui-widget ui-corner-all" type="submit" value="Reset">
+    <a class="ui-button ui-widget ui-corner-all" href="#">Excel</a>
+    <a class="ui-button ui-widget ui-corner-all" href="#">PDF</a>
+
+    </div>
+
+  </div>
+
+</div>
+   
+</div>
 
 
   <h2>List Provinces</h2>
 
   <hr>
-<!--   <p>
-    
-    <ul class="breadcrumb">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Pictures</a></li>
-      <li><a href="#">Summer 15</a></li>
-      <li>Italy</li>
-    </ul>
-
-  </p> -->
-
 
   <div class="table-responsive-sm">
   <table class="table table-bordered table-striped table-hover">
@@ -81,4 +135,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </tbody>
   </table>
 </div>
+
+
+
+<!-- Script -->
+
+<script>
+  $( function() {
+    $( "#accordion" ).accordion({
+      collapsible: true
+    });
+  } );
+</script>
+
+
+  <script>
+  $( function() {
+    $( "#speed" ).selectmenu();
+ 
+    $( "#files" ).selectmenu();
+ 
+    $( "#number" )
+      .selectmenu()
+      .selectmenu( "menuWidget" )
+        .addClass( "overflow" );
+ 
+    $( "#salutation" ).selectmenu();
+  } );
+  </script>
+
+
+<script>
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+
+
+<!-- End Script -->
 
