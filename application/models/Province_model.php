@@ -15,4 +15,9 @@ class Province_model extends CI_Model {
 		$total = $this->db->count_all_results($this->_name, FALSE);
 		return $query->result_array();
 	}
+	
+	public function fetchDistrict($page_number, $limit, $offset=null, $total, $params){
+		$query = $this->db->get_where('tb_district', array('id_province'=>$params['id_province']), $limit=null, $offset);
+		return $query->result_array();
+	}
 }

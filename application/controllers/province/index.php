@@ -37,6 +37,8 @@ $data_view['arrProvince'] = $this->mod_pro->fetchPaginProvince($page_number, $li
 $config['total_rows'] = $total;
 $this->pagination->initialize($config);
 
+/* echo $this->pagination->create_links(); */
+
 $data['total'] = $total;
 $data['content'] = $this->parser->parse('province/index', array(), TRUE);
 $this->template->_layout($data, $bool=false);

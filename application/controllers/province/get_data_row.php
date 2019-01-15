@@ -10,8 +10,7 @@ $params = array();
 $sess = $this->session->userdata('userStorage');
 // print_r($sess);
 
-
-$config['base_url'] = base_url('province/index');
+$config['base_url'] = site_url('province/index');
 $config['use_page_numbers'] = TRUE;
 $config['full_tag_open'] = '<div><ul class="pagination pagination-small pagination-centered">';
 $config['full_tag_close'] = '</ul></div>';
@@ -31,10 +30,16 @@ $config['num_tag_open'] = '<li>';
 $config['num_tag_close'] = '</li>';
 $config['first_link'] = FALSE;
 $config['last_link'] = FALSE;
+
+$offset = ($page_number  == 1) ? 0 : ($page_number * $config['per_page']) - $config['per_page'];
+$config['total_rows'] = 100;
 $this->pagination->initialize($config);
-// $this->pagination->create_links();
-$data = $this->mod_pro->fetchPaginProvince($page_number, $limit, $offset, $total, $params);
+
+		$data = array();
+		$data['table_rows'] = $this->mod_pro->fetchPaginProvince($page_number, $limit, $offset, $total, $params);
+		$data['pagin'] = $this->pagination->create_links();
 
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
+
 echo json_encode($data);

@@ -66,7 +66,7 @@ $autoload['libraries'] = array(
 							'template',
 							'auth_login',
 							'pagination',
-							'breadcrumb'
+							'breadcrumb',
 						);
 
 /*

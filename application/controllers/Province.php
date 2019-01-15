@@ -20,4 +20,8 @@ class Province extends CI_Controller {
 	{
 		include(dirname(__FILE__)."/province/get_data_row.php");
 	}
+	
+	public function list_district(){
+		include(dirname(__FILE__)."/province/list_district.php");
+	}
 }
