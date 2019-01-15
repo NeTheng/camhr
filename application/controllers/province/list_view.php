@@ -35,4 +35,7 @@ $this->pagination->initialize($config);
 // $this->pagination->create_links();
 
 $data = $this->mod_pro->fetchPaginProvince($page_number, $limit, $offset, $total, $params);
+
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
 echo json_encode($data);

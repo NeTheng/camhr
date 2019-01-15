@@ -20,14 +20,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     font-weight: bold;
     text-shadow: 1px 1px 0 #fff;
   }
-
 </style>
 
 
   <h2>List Provinces</h2>
-
   <hr>
-
 <div id="accordion" class="accordion">
   <h3>Search</h3>
 <div class="container-fluid text-left">
@@ -146,7 +143,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
               </li>
             </ul>
-          </div>          
+          </div>
+
         </td>
       </tr>
 <?php  endforeach; ?>
@@ -156,8 +154,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </table>
 </div>
 
+<div id="pagin_load"></div>
 
+<?php echo $this->pagination->create_links();?>
 <!-- Script -->
+
 <script>
   $( function() {
     $( "#accordion" ).accordion({
@@ -166,8 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   } );
 </script>
 
-
-  <script>
+<script>
   $( function() {
     $( "#speed" ).selectmenu();
  
@@ -180,8 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  
     $( "#salutation" ).selectmenu();
   } );
-  </script>
-
+</script>
 
 <script>
   $( function() {
@@ -218,14 +217,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- AJAX -->
 <script type="text/javascript">
-
 $(document).ready(function(){
-
   $("#_export_excel").click(function(){
     $.ajax({
     url: "<?=site_url('province/list_view');?>", 
-    success: function(result){
-      
+    success: function(response){
+      console.log(response);
+      var table = '';
+          table +='<table class="table table-bordered table-striped table-hover">'
+            table +='<thead>';
+              table +='<tr>';
+                table +='<th>ID <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Provice <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Child <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Status <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Action <i class="fa fa-fw fa-sort"></i></th>';
+              table +=' </tr>';
+            table +='</thead>';
+
+            table +='<tbody>';
+            $.each(response, function( index, value ) {
+              table +='<tr>';
+                table +='<td class="col-md-1">'+value['id']+'</td>';
+                table +='<td>'+value['province']+'</td>';
+                table +='<td class="col-md-1"><input class="ui-button ui-widget ui-corner-all" type="submit" value="View"></td>';
+                table +='<td class="col-md-1">'+'status'+'</td>';
+                table +='<td class="col-md-1">';
+                  table +='<div class="dropdown">';
+                  table +='<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="fa fa-chevron-circle-down"></span></button>';
+                    table +='<ul class="dropdown-menu dropdown-menu-right">';
+
+                      table +='<li><a href="#">';
+                      table +='<?=anchor("news/local/123", "View", "title=View list child");?>';
+                      table +=' </li>';                    
+
+                    table +='</ul>';
+                  table +='</div>';
+
+                table +='</td>';
+              table +='</tr>';              
+            });
+
+            table +='</tbody>';
+
+          table +='</table>';
+
+      $( "#tab_manage" ).replaceWith( table );
     },
     dataType: "json",
     data:{},
@@ -238,9 +275,8 @@ $(document).ready(function(){
       $("#loading-data").show();
     },
     complete(xhr,status){
-      $("#table-data").html("");
+      $("#tab_manage > #table-data").remove();
       $("#loading-data").hide();
-
     },
     error: function(xhr){
       alert("An error occured: " + xhr.status + " " + xhr.statusText);
@@ -248,13 +284,83 @@ $(document).ready(function(){
     });
   });
 });
+
+
+function load_data() {
+  $.ajax({
+    async: true,
+    global:false,
+    type:"get",
+    cache:false,
+    dataType: "json",
+    url: "<?=site_url('province/get_data_row');?>",
+    data: {},
+    success: function(response){
+      console.log(response);
+      var table = '';
+          table +='<table class="table table-bordered table-striped table-hover">'
+            table +='<thead>';
+              table +='<tr>';
+                table +='<th>ID <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Provice <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Child <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Status <i class="fa fa-fw fa-sort"></i></th>';
+                table +='<th>Action <i class="fa fa-fw fa-sort"></i></th>';
+              table +=' </tr>';
+            table +='</thead>';
+
+            table +='<tbody>';
+            $.each(response, function( index, value ) {
+              table +='<tr>';
+                table +='<td class="col-md-1">'+value['id']+'</td>';
+                table +='<td>'+value['province']+'</td>';
+                table +='<td class="col-md-1"><input class="ui-button ui-widget ui-corner-all" type="submit" value="View"></td>';
+                table +='<td class="col-md-1">'+'status'+'</td>';
+                table +='<td class="col-md-1">';
+                  table +='<div class="dropdown">';
+                  table +='<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Action <span class="fa fa-chevron-circle-down"></span></button>';
+                    table +='<ul class="dropdown-menu dropdown-menu-right">';
+
+                      table +='<li><a href="#">';
+                      table +='<?=anchor("news/local/123", "View", "title=View list child");?>';
+                      table +=' </li>';                    
+
+                    table +='</ul>';
+                  table +='</div>';
+
+                table +='</td>';
+              table +='</tr>';              
+            });
+
+            table +='</tbody>';
+
+          table +='</table>';
+      $( "#tab_manage" ).replaceWith(table);
+    },
+    beforeSend(xhr){
+      $("#loading-data").show();
+    },
+    complete(xhr,status){
+      $("#tab_manage > #table-data").remove();
+      $("#loading-data").hide();
+    },    
+    error: function(xhr){
+      alert("An error occured: " + xhr.status + " " + xhr.statusText);
+    },    
+  });
+}
+
+
+$(function() {
+
+$( ".pagination" ).on( "click", "a", function() {
+   alert(3);
+   return false;
+});
+
+
+});
+
+load_data();
 </script>
 <!--END AJAX -->
-
-
-<!-- processbar -->
-<script>
-  $( function() {
- 
-  } );
-  </script>
